@@ -3,9 +3,10 @@ def tabela(valor):
     print(valor)
     global com
     com+=1
-    print(f'           200{com}')
     for turno in valor:
-        for sala in turno.values():
+        for nomedasala,sala in turno.items():
+            if not sala == []:
+                print(f'{nomedasala:^39}')
             for lista in sala:
                 for keys, aluno in lista.items():
                     print(f'{keys:<25}{aluno}')
@@ -35,12 +36,14 @@ def separador_de_salas(valores):
        if controle_de_manha<=vagas_por_turno and values['turno']==0:
             manha[f'200{contador}'].append(values.copy())
             controle_de_manha+=1
-            if controle_de_manha==2 or 4 or 6 or 8 or 10:
+            if controle_de_manha==2:
                 contador+=1
+                controle_de_manha=0
 
        if controle_de_tarde<=vagas_por_turno and values['turno']==1:
-            tarde[f'200{conttarde}'].append(values)
-            if controle_de_tarde==2 or 4 or 6 or 8 or 10:
+            tarde[f'200{conttarde}'].append(values.copy())
+            if controle_de_tarde==2:
+                controle_de_tarde=0
                 conttarde+=1
     return manha,tarde
 
