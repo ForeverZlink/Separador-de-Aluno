@@ -1,4 +1,4 @@
-from modulos import leiaint,tabela,validaçao
+from modulos import leiaint,tabela,separador_de_salas
 
 cont=0
 infomações={}
@@ -17,5 +17,5 @@ while True:
     if escolha2 == 1:
         break
 
-
-validaçao(tudo)
+alunosseparado=separador_de_salas(tudo)
+tabela(alunosseparado)
