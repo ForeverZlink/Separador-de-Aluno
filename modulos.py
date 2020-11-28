@@ -1,5 +1,5 @@
 def linha():
-    print('='*40)
+    print('='*116)
 
 def leia_data(texto):
     while True:
@@ -42,19 +42,26 @@ def leia_opção(text):
             return numero
 
 def tabela(valor):
+    comt=0
     for turno in valor:
         for nomedasala,sala in turno.items():
             if not sala == []:
-                print(f'{"Sala":>14}{nomedasala:>1}')
+                comt=1
+                print(f'{"Sala":^114}{nomedasala}')
                 linha()
             for lista in sala:
                 if lista['Turno']==0:
                     lista['Turno']='Manhã'
                 else:
                     lista['Turno']='Tarde'
-                for keys, aluno in lista.items():
-                    print(f'{keys:<25}{aluno}')
-                    linha()
+                if comt==1:
+                    comt=0
+                    for keys in lista.keys():
+                        print(f'{keys:<14}',end='')
+                    print()
+                for values in lista.values():
+                    print(f'{values:<17}',end='\t')
+                print()
 
 
 
@@ -74,7 +81,7 @@ def separador_de_salas(valores):
     capacidade_de_alunos_da_sala_manhã=0
     capacidade_de_alunos_da_sala_tarde=0
     manha={'2000':[],'2001':[],'2002':[],'2003':[],'2004':[]}
-    tarde={'2005':[],'2006':[],'2007':[],'2008':[],'200':[]}
+    tarde={'2005':[],'2006':[],'2007':[],'2008':[],'2009':[]}
     for values in valores:
        if capacidade_de_alunos_da_sala_manhã<=vagas_por_turno and values['Turno']==0:
             manha[f'200{contador}'].append(values.copy())
